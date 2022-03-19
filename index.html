@@ -1,0 +1,40 @@
+<!-- File: headline_teks.html -->
+<html>
+    <head>
+        <style>
+            h1:hover{color: yellow;}
+        </style>
+        <title>Membaca File Json</title>
+        <!-- Import Library JQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <!-- Kode Java Script -->
+        <script type="text/javascript">
+            $(function(){
+                //mengambil data dari file json
+                $.get('hasil_scrap.json',function(obj){
+                    var str = "<table border=1 align=center>";
+                    str +="<center><tr><td>No</td><td class='tables'>Title</td><td class='tables'>Genre</td><td class='tables'>Rating</td><td class='tables'>Origin</td><td class='tables'>Picture</td><td class='tables'>Time Scraping</td></tr></center>";
+                    $.each(obj,function(n,data){
+                        str +="<tr><td>" + (n+1) + "</td>";
+                        str +="<td>" + data.Title + "</td>";
+                        str +="<td class='tables'>" + data.Genre + "</td>";
+                        str +="<td class='tables'>" + data.Rating + "</td>";
+                        str +="<td class='tables'>" + data.Origin + "</td>";
+                        str += '<td><img src="' + data.img_src + '"></td>';
+                        str +="<td class='tables'>" + data.Waktu_scrapping + "</td></tr>";
+                    });
+                    str +="</table>";
+                    $('#hasil_scrap_json').html(str);
+                });
+            });
+        </script>
+    </head>
+    <body>
+         <!-- Menampilkan judul -->
+         <h1 style="text-align: center;">Latest Series Novel</h1>
+         <!-- Menampilkan headline -->
+         <div id="hasil_scrap_json"></div>
+         
+    </body>
+    </head>
+</html>
